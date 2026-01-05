@@ -7,7 +7,7 @@ import path from 'path';
 import inquirer from 'inquirer';
 
 import { encryptFile, decryptFile } from './lib/crypto.js';
-import { initProject, pushWithToken, pullWithToken, git, switchBranch, createBranch } from './lib/git.js';
+import { initProject, pushWithToken, pullWithToken, git, switchBranch, createBranch, updateAegis } from './lib/git.js';
 
 const program = new Command();
 const config = new Conf({ projectName: 'aegis-cli' });
@@ -140,6 +140,16 @@ program
   .argument('<file>')
   .option('-p, --password <pass>', 'Optional: Override config secret')
   .action((file, opt) => decryptFile(file, opt.password));
+
+program
+  .command('update')
+  .description('Update Aegis CLI')
+  .option('--lts', 'Update to Stable (Main) version')
+  .option('--pre', 'Update to Beta (Pre-release) version')
+  .action(async (options) => {
+    const type = options.pre ? 'pre' : 'lts';
+    await updateAegis(type);
+  });
 
 program
   .command('status')
