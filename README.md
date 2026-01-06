@@ -16,8 +16,8 @@
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/yourusername/aegis-cli.git
-   cd aegis-cli
+   https://github.com/Notzeyyyc/Aegis-CLI.git
+   cd Aegis-CLI
    ```
 
 2. **Run the setup script:**
